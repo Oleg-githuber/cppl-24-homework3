@@ -3,6 +3,11 @@
 smart_array::smart_array(int size) : arrSize{ size }, arr{ new int[arrSize] }
 {}
 
+smart_array::smart_array(const smart_array& other): smart_array{other.getSize()}
+{
+	copyArray(other);
+}
+
 void smart_array::add_element(int number)
 {
 	if (filledSize < arrSize)
@@ -29,9 +34,23 @@ int smart_array::getSize() const
 	return arrSize;
 }
 
+int smart_array::getFilledSize() const
+{
+	return filledSize;
+}
+
 int* smart_array::getArray() const
 {
 	return arr;
+}
+
+void smart_array::copyArray(const smart_array& other)
+{
+	for (int i{}; i < arrSize; ++i)
+	{
+		arr[i] = other.get_element(i);
+	}
+	filledSize = other.getFilledSize();
 }
 
 smart_array::~smart_array()
@@ -45,10 +64,7 @@ void smart_array::operator=(const smart_array& other)
 	arrSize = other.getSize();
 	arr = new int[arrSize];
 	
-	for (int i{}; i < arrSize; ++i)
-	{
-		arr[i] = other.get_element(i);
-	}
+	copyArray(other);
 
 	delete[] newArr;
 }

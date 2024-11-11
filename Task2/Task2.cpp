@@ -23,10 +23,12 @@ int main()
 
     arr = new_array;
 
+    smart_array arr2 = arr;
+
     // Проверка присваивания
-    for (int i{}; i < arr.getSize(); ++i)
+    for (int i{}; i < arr2.getSize(); ++i)
     {
-        std::cout << "Элемент №" << i << " = " << arr.get_element(i) << '\n';
+        std::cout << "Элемент №" << i << " = " << arr2.get_element(i) << '\n';
     }
 
     return EXIT_SUCCESS;
